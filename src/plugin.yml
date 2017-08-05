@@ -1,0 +1,17 @@
+name: BedWarp
+main: cc.isotopestudio.bedwarp.BedWarp
+
+author: Mars
+description: 
+website: http://isotopestudio.cc
+version: 1.0.0
+
+commands:
+  bedwarp:
+    description: BedWarp
+    usage: /<command>
+    aliases: [btp]
+  bedlist:
+    description: BedWarp
+    usage: /<command>
+    aliases: [blist]
