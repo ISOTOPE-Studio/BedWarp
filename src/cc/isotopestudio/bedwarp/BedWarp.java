@@ -2,7 +2,9 @@ package cc.isotopestudio.bedwarp;
 
 import cc.isotopestudio.bedwarp.cmd.CommandBedList;
 import cc.isotopestudio.bedwarp.cmd.CommandBedWarp;
+import cc.isotopestudio.bedwarp.listener.BedListener;
 import cc.isotopestudio.bedwarp.util.PluginFile;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,7 +29,7 @@ public class BedWarp extends JavaPlugin {
         this.getCommand("bedwarp").setExecutor(new CommandBedWarp());
         this.getCommand("bedlist").setExecutor(new CommandBedList());
 
-
+        Bukkit.getPluginManager().registerEvents(new BedListener(), this);
         getLogger().info(pluginName + "成功加载!");
         getLogger().info(pluginName + "由ISOTOPE Studio制作!");
         getLogger().info("http://isotopestudio.cc");

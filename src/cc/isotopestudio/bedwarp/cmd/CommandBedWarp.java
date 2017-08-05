@@ -5,10 +5,13 @@ package cc.isotopestudio.bedwarp.cmd;
  */
 
 import cc.isotopestudio.bedwarp.util.S;
+import cc.isotopestudio.bedwarp.util.Util;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import static cc.isotopestudio.bedwarp.BedWarp.playerData;
 
 public class CommandBedWarp implements CommandExecutor {
 
@@ -25,6 +28,12 @@ public class CommandBedWarp implements CommandExecutor {
                 sender.sendMessage(S.toYellow("/btp <地标名> - 传送到床地标"));
                 sender.sendMessage(S.toYellow("/blist  - 床地标列表"));
                 return true;
+            }
+            if (playerData.isSet(player.getName() + "." + args[0] + ".location1")) {
+                player.teleport(Util.stringToLocation(playerData.getString(
+                        player.getName() + "." + args[0] + ".location1")));
+            } else {
+                player.sendMessage(S.toPrefixRed("床地标不存在或已被拆除"));
             }
             return true;
         }

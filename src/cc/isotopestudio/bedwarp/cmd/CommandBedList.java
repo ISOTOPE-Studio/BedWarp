@@ -10,6 +10,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static cc.isotopestudio.bedwarp.BedWarp.playerData;
+
 public class CommandBedList implements CommandExecutor {
 
     @Override
@@ -21,6 +23,15 @@ public class CommandBedList implements CommandExecutor {
                 return true;
             }
             Player player = (Player) sender;
+            if (playerData.isConfigurationSection(player.getName())) {
+                sender.sendMessage(S.toPrefixAqua(" --- 床地标 ---"));
+                playerData.getConfigurationSection(player.getName()).getKeys(false)
+                        .forEach(bedName -> player.sendMessage(S.toYellow(
+                                " - " + bedName + ": " + playerData.getString(
+                                        player.getName() + "." + bedName + ".location1"))));
+            } else {
+                sender.sendMessage(S.toPrefixRed("你没有床地标"));
+            }
             return true;
         }
         return false;
