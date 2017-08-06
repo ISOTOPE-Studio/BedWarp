@@ -30,7 +30,7 @@ public class BedWarp extends JavaPlugin {
         this.getCommand("bedlist").setExecutor(new CommandBedList());
 
         Bukkit.getPluginManager().registerEvents(new BedListener(), this);
-        getLogger().info(pluginName + "成功加载!");
+        getLogger().info(pluginName + " " + getDescription().getVersion() + " 成功加载!");
         getLogger().info(pluginName + "由ISOTOPE Studio制作!");
         getLogger().info("http://isotopestudio.cc");
     }

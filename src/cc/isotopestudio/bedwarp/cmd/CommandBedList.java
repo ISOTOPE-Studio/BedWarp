@@ -23,7 +23,7 @@ public class CommandBedList implements CommandExecutor {
                 return true;
             }
             Player player = (Player) sender;
-            if (playerData.isConfigurationSection(player.getName())) {
+            if (playerData.isSet(player.getName())) {
                 sender.sendMessage(S.toPrefixAqua(" --- ´²µØ±ê ---"));
                 playerData.getConfigurationSection(player.getName()).getKeys(false)
                         .forEach(bedName -> player.sendMessage(S.toYellow(

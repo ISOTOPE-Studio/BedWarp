@@ -107,11 +107,12 @@ public class BedListener implements Listener {
         System.out.println(bed.getLocation());
         for (String playerName : playerData.getKeys(false)) {
             for (String bedName : playerData.getConfigurationSection(playerName).getKeys(false)) {
-                if (bed.getLocation().distance(Util.stringToLocation(
-                        playerData.getString(playerName + "." + bedName + ".location1"))) < 1 ||
-                        bed.getLocation().distance(Util.stringToLocation(
-                                playerData.getString(playerName + "." + bedName + ".location2"))) < 1) {
+                if (bed.getLocation().getBlock().getLocation().equals(Util.stringToLocation(
+                        playerData.getString(playerName + "." + bedName + ".location1")).getBlock().getLocation()) ||
+                        bed.getLocation().getBlock().getLocation().equals(Util.stringToLocation(
+                                playerData.getString(playerName + "." + bedName + ".location2")).getBlock().getLocation())) {
                     playerData.set(playerName + "." + bedName, null);
+                    playerData.save();
                     Player owner = Bukkit.getPlayerExact(playerName);
                     if (owner != null) {
                         owner.sendMessage(S.toPrefixYellow("你的床领地 " + bedName + " 已被拆除"));

@@ -4,6 +4,7 @@ package cc.isotopestudio.bedwarp.cmd;
  * Copyright ISOTOPE Studio
  */
 
+import cc.isotopestudio.bedwarp.gui.WarpGUI;
 import cc.isotopestudio.bedwarp.util.S;
 import cc.isotopestudio.bedwarp.util.Util;
 import org.bukkit.command.Command;
@@ -25,8 +26,13 @@ public class CommandBedWarp implements CommandExecutor {
             }
             Player player = (Player) sender;
             if (args.length < 1) {
-                sender.sendMessage(S.toYellow("/btp <地标名> - 传送到床地标"));
-                sender.sendMessage(S.toYellow("/blist  - 床地标列表"));
+                if (playerData.isSet(player.getName())) {
+                    new WarpGUI(player, 0).open(player);
+                } else {
+                    sender.sendMessage(S.toPrefixRed("你没有床地标"));
+                }
+//                sender.sendMessage(S.toYellow("/btp <地标名> - 传送到床地标"));
+//                sender.sendMessage(S.toYellow("/blist  - 床地标列表"));
                 return true;
             }
             if (playerData.isSet(player.getName() + "." + args[0] + ".location1")) {
